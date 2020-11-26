@@ -1,0 +1,6 @@
+/*
+/*/
+/wp-content/languages
+!wp-content/
+!README.md
+!.gitignore
