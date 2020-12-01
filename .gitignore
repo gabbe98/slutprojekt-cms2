@@ -1,6 +1,12 @@
 /*
 /*/
 /wp-content/languages
+/wp-content/uploads
+/wp-content/plugins/advanced-custom-fields-pro
+/wp-content/plugins/akismet
+/wp-content/plugins/all-in-one-wp-migration
+/wp-content/plugins/woocommerce
+wp-content/ai1wm-backups
 !wp-content/
 !README.md
 !.gitignore
