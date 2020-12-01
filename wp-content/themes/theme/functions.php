@@ -39,7 +39,36 @@ function butiker()
     register_post_type('butiker', $args);
 }
 add_action('init', 'butiker');
+
+// Woocommerce stöd
 add_action( 'after_setup_theme', 'woocommerce_support' );
 function woocommerce_support() {
-   add_theme_support( 'woocommerce' );
-}                               
+    add_theme_support( 'woocommerce' );
+}
+
+
+// ==================================
+//               Nav bar
+// ==================================
+
+// Registrera ett eget meny alternativ
+function register_nav_bar() {
+register_nav_menu('slutprojekt_nav_bar', __( 'Nav Bar'));
+}
+add_action( 'init', 'register_nav_bar' );
+
+// Lägg
+function add_nav_item_class( $classes, $args ) {
+    if ( 'slutprojekt_nav_bar' === $args->theme_location ) {
+        $classes[] = 'nav-item';
+    }
+    
+    return $classes;
+}
+add_filter( 'nav_menu_css_class', 'add_nav_item_class', 10, 3 );
+
+function add_link_attributes($attributes) {
+    $attributes['class'] = "nav-link";
+    return $attributes;
+}
+add_filter( 'nav_menu_link_attributes', 'add_link_attributes');
