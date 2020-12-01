@@ -2,7 +2,7 @@
 /*
 *Template name: Regler och villkor
  */
-wp_head()
+get_header()
 ?>
 
 <?php
@@ -19,4 +19,4 @@ while (have_posts()) {
 </section>
 
 
-<?php wp_footer() ?>
+<?php get_footer() ?>
