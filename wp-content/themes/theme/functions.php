@@ -39,3 +39,7 @@ function butiker()
     register_post_type('butiker', $args);
 }
 add_action('init', 'butiker');
+add_action( 'after_setup_theme', 'woocommerce_support' );
+function woocommerce_support() {
+   add_theme_support( 'woocommerce' );
+}                               
