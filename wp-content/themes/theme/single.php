@@ -11,7 +11,7 @@ if ( have_posts() ) {
                 if (get_the_post_thumbnail_url() != null) {
                     echo '<img src="';
                     the_post_thumbnail_url();
-                    echo '" class="img-thumbnail blogg-img float-right">';
+                    echo '" class="img-thumbnail blogg-img-single float-right">';
                 }
                 echo '<a href="';
                 the_permalink();
@@ -21,7 +21,7 @@ if ( have_posts() ) {
                 echo '</h1>';
                 echo '</a>';
                 echo '<p class="lead">';
-                    the_excerpt();
+                    the_content();
                 echo '</p>';
                 
                 echo '</div>';

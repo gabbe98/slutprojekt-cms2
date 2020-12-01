@@ -9,4 +9,8 @@
         wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/js/bootstrap.min.js', array(), null, true );
     }
     add_action('wp_enqueue_scripts', 'slutprojekt_enqueue_scripts');
+    function wpdocs_excerpt_more( $more ) {
+        return '<a href="' . get_the_permalink() . '">...</a>';
+    }
+    add_filter( 'excerpt_more', 'wpdocs_excerpt_more' );
 ?>
