@@ -72,3 +72,12 @@ function add_link_attributes($attributes) {
     return $attributes;
 }
 add_filter( 'nav_menu_link_attributes', 'add_link_attributes');
+
+//Stöd för google maps i ACF
+
+function my_acf_google_map_api( $api ){
+    $api['key'] = 'AIzaSyDXYJDOsJU6QmvuFi-D4r3w1yaWRPVahmE';
+    return $api;
+}
+
+add_filter('acf/fields/google_map/api', 'my_acf_google_map_api');
