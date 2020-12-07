@@ -15,6 +15,7 @@
  * Om man inte överstiger beloppet skall leveransalternativet kosta och leveransavgiften skall gå att ställa in i admin.
 
  */
+require 'leverans2-acf.php';
 ?>
 
 
