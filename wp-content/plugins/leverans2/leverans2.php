@@ -43,7 +43,6 @@ if (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_
           $this->enabled            = "yes";
           $this->title              = "Hämta i butik";
 
-
           $this->init();
         }
 
@@ -98,7 +97,9 @@ if (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_
   }
   add_filter('woocommerce_shipping_methods', 'add_collect_at_store');
 }
-//Option page för leveransmetod
+
+// Option page för plugin
+
 function option_page()
 {
   acf_add_options_page([
@@ -110,3 +111,59 @@ function option_page()
   ]);
 }
 add_action('acf/init', 'option_page');
+
+
+
+
+
+// Funktion för att hämta butiker från CPT samt skapar eget fält i checkout
+function hamta_i_butik($customfields)
+{
+
+  $loop = new WP_Query(array(
+    'post_type' => 'butiker',
+    'posts_per_page' => 10
+  ));
+
+  $butiksknappar = [];
+
+  while ($loop->have_posts()) {
+    $loop->the_post();
+
+    $butiksknappar[get_field('plats')] = get_field('plats');
+  }
+
+
+  echo '<div><h2>' . __('Hämta i butik') . '</h2>';
+  woocommerce_form_field('my_field_name', array(
+    'type'          => 'radio',
+    'options' => $butiksknappar,
+    'class'         => array('form-row-wide'),
+    'label'         => 'Välj butik:'
+  ), $customfields->get_value('my_field_name'));
+
+  echo '</div>';
+}
+add_action('woocommerce_after_order_notes', 'hamta_i_butik');
+
+
+
+
+
+// Uppdaterar meta med värdet från fälten
+add_action('woocommerce_checkout_update_order_meta', 'my_custom_checkout_field_update_order_meta');
+
+function my_custom_checkout_field_update_order_meta($order_id)
+{
+  if (!empty($_POST['my_field_name'])) {
+    update_post_meta($order_id, 'My Field', sanitize_text_field($_POST['my_field_name']));
+  }
+}
+
+// Lägger till vald butik så det visas i ordern på Admin sidan.
+add_action('woocommerce_admin_order_data_after_billing_address', 'my_custom_checkout_field_display_admin_order_meta', 10, 1);
+
+function my_custom_checkout_field_display_admin_order_meta($order)
+{
+  echo '<h2><strong>' . __('Hämtas i butik') . ':</strong> ' . get_post_meta($order->get_id(), 'My Field', true) . '</h2>';
+}
