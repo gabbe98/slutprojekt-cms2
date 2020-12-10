@@ -10,3 +10,98 @@
 .blogg-img-single {
     width: 20vw;
 }
+
+/* Slider  */
+#carouselSliders{
+    width: 50%;
+    margin: auto;
+    height: 400px;
+}
+
+.carousel-item {
+    height: 100%;
+    width: 100%;
+    background-repeat: no-repeat;
+}
+
+.sliderTextBox{
+color: rgb(0, 0, 0);
+text-align: center;
+background-color: rgba(255, 255, 255, 0.829);
+width: 50%;
+margin-left: 25%;
+margin-top: 40%;
+margin-bottom: 1em;
+padding: 0.2em;
+}
+
+
+
+.productsBestSellers, 
+.productSales,
+.productFeatured {
+    margin: 5% 25%;
+}
+
+.productListTitle{
+    text-align: center;
+}
+
+.section {
+	clear: both;
+}
+
+.col {
+	display: block;
+	float:left;
+    margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+
+
+.group:before,
+.group:after {
+	content:"";
+	display:table;
+}
+.group:after {
+	clear:both;
+}
+.group {
+    zoom:1; 
+}
+
+
+
+@media only screen and (max-width: 480px) {
+	.col { margin: 1% 0 1% 0%;}
+}
+
+
+
+.puffBlogPost{
+width: 24%;
+margin: auto;
+background-color: rgba(190, 189, 189, 0.253);
+}
+
+.puffTitle{
+    text-align: center;
+    color: black;
+}
+
+.puffExcerpt{
+    text-align: justify;
+    padding: 10px 20px;
+    color: black;
+}
+
+.bloggimage{ 
+    width: 340px;
+    height: auto;
+    padding: 10px;
+}
+
+a{
+    color: black;
+}
