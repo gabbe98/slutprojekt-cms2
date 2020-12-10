@@ -3,7 +3,9 @@ get_header();
 /*
 *Template name: Exempelsida
  */
-?>
+
+require 'slider-acf.php'; ?>
+
 <!-- Slider  -->
 <br> <br>
 <div id="carouselSliders" class="carousel slide" data-ride="carousel">
