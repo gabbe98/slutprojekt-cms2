@@ -10,3 +10,5 @@ wp-content/ai1wm-backups
 !wp-content/
 !README.md
 !.gitignore
+wp-content/.DS_Store
+wp-content/themes/.DS_Store
