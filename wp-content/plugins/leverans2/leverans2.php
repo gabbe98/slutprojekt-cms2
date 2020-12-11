@@ -116,7 +116,7 @@ add_action('acf/init', 'option_page');
 
 
 
-// Funktion för att hämta butiker från CPT samt skapar eget fält i checkout
+// Funktion för att hämta butiker från CPT
 function hamta_i_butik($customfields)
 {
 
@@ -133,7 +133,7 @@ function hamta_i_butik($customfields)
     $butiksknappar[get_field('plats')] = get_field('plats');
   }
 
-
+  // Eget fält i checkout fönstret för att välja butik
   echo '<div><h2>' . __('Hämta i butik') . '</h2>';
   woocommerce_form_field('my_field_name', array(
     'type'          => 'radio',
