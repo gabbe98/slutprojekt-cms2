@@ -105,3 +105,11 @@ background-color: rgba(190, 189, 189, 0.253);
 a{
     color: black;
 }
+
+.woocommerce-billing-fields .form-row, .woocommerce-shipping-fields .form-row,.woocommerce form .form-row {
+    display: block;
+}
+
+.woocommerce .col2-set .col-1, .woocommerce-page .col2-set .col-1,.woocommerce .col2-set .col-2, .woocommerce-page .col2-set .col-2 {
+    max-width: unset;
+}
