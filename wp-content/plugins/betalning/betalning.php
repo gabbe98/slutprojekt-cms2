@@ -10,8 +10,7 @@ add_action( 'plugins_loaded', 'betalning_init');
 
 function betalning_init() {
     if( class_exists('WC_Payment_Gateway')) {
-        class WC_Betalning_Gateway extends WC_Payment_Gateway {
-            private $personnummer;
+        class WC_Betalning_Gateway extends WC_Payment_Gateway {     
             public function __construct()
             {
                 $this->id = 'betalning'; // Sätter id till betalning<
@@ -66,18 +65,6 @@ function betalning_init() {
                     )
                 ));
             }
-
-            public function luhn_algoritm($personnummer) {
-                $personnummer = preg_replace('/[^\d]/', '', $personnummer);
-                $sum = '';
-            
-                for ($i = strlen($personnummer) - 1; $i >= 0; -- $i) {
-                    $sum .= $i & 1 ? $personnummer[$i] : $personnummer[$i] * 2;
-                }
-            
-                return array_sum(str_split($sum)) % 10 === 0;
-            }
-
             public function process_payment($order_id) {
                 global $woocommerce;
                 $order = new WC_Order ($order_id);
@@ -91,21 +78,63 @@ function betalning_init() {
                     'redirect' => $this->get_return_url($order)
                 );
                 $order->payment_complete();
-
-                // if ($this->luhn_algoritm($this->personnummer)) {
-                
-                // } else {
-
-                // }
             }
         }
     }
 }
 add_filter('woocommerce_payment_gateways', 'add_to_woo_betalning_gateway' );
 
+// Hook in
+add_filter( 'woocommerce_checkout_fields' , 'custom_override_checkout_fields' );
+
+// Our hooked in function - $fields is passed via the filter!
+function custom_override_checkout_fields( $fields ) {
+     $fields['billing']['billing_personnummer'] = array(
+        'label'     => __('Personnummer', 'woocommerce'),
+    'placeholder'   => _x('Personnummer', 'placeholder', 'woocommerce'),
+    'required'  => true,
+    'class'     => array('form-row-wide'),
+    'clear'     => true
+     );
+
+     return $fields;
+}
+
+/**
+ * Display field value on the order edit page
+ */
+ 
+add_action( 'woocommerce_admin_order_data_after_shipping_address', 'add_checkout_field_personnummer', 10, 1 );
+
+function add_checkout_field_personnummer($order){
+    echo '<p><strong>'.__('Personnummer From Checkout Form').':</strong> ' . get_post_meta( $order->get_id(), '_billing_personnummer', true ) . '</p>';
+}
 
 function add_to_woo_betalning_gateway($gateways ) {
     $gateways[] = 'WC_Betalning_Gateway';
     return $gateways;
 }
+
+add_action( 'woocommerce_after_checkout_validation', 'complete_purchase', 10, 2);
+function complete_purchase($fields, $errors) {
+
+        class WC_Validate_Personnummer {
+            public function __construct($fields, $errors)
+            {
+                if ( !$this->luhn_algoritm($fields['billing_personnummer'] ) ){
+                    $errors->add( 'validation', 'Skriv in ett giltigt personnummer.' );
+                }
+            }
+            public function luhn_algoritm($fields) {
+                
+                if ($fields === '1') {
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+        }
+    new WC_Validate_Personnummer($fields, $errors);
+}
+
 ?>
