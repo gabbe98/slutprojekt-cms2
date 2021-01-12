@@ -8,10 +8,18 @@ get_header();
 
 
 <?php
-// Visar custom post type, Putte
-$loop = new WP_Query(array('post_type' => 'butiker', 'posts_per_page' => 10));
+// Visar custom post type samt lagrar i transient, Putte
+if (false === ($loop = get_transient('varabutiker'))) {
+  $loop = new WP_Query(array(
+    'post_type' => 'butiker',
+    'posts_per_page' => 10
+  ));
+
+  set_transient('varabutiker', $loop, 12 * HOUR_IN_SECONDS);
+}
 
 while ($loop->have_posts()) : $loop->the_post();
+
 
 ?>
 
@@ -29,4 +37,7 @@ while ($loop->have_posts()) : $loop->the_post();
   </div>
 
 <?php endwhile; ?>
+
+<?php wp_reset_postdata(); ?>
+
 <?php get_footer(); ?>
