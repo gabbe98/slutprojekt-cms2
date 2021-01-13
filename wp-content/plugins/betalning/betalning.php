@@ -127,11 +127,22 @@ function complete_purchase($fields, $errors) {
             }
             public function luhn_algoritm($fields) {
                 
-                if ($fields === '1') {
-                    return false;
-                } else {
+                if (is_numeric($fields) && $this->isValidPersonnummer($fields)) {
                     return true;
+                } else {
+                    return false;
                 }
+            }
+
+            public function isValidPersonnummer($num) {
+                $num = preg_replace('/[^\d]/', '', $num);
+                $sum = '';
+            
+                for ($i = strlen($num) - 1; $i >= 0; -- $i) {
+                    $sum .= $i & 1 ? $num[$i] : $num[$i] * 2;
+                }
+            
+                return array_sum(str_split($sum)) % 10 === 0;
             }
         }
     new WC_Validate_Personnummer($fields, $errors);
