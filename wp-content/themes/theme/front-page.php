@@ -6,6 +6,9 @@ get_header();
 
 require 'slider-acf.php'; ?>
 
+<!-- Avsluta container div från header  -->
+</div>
+
 <!-- Slider  -->
 <br> <br>
 <div id="carouselSliders" class="carousel slide" data-ride="carousel">
@@ -223,6 +226,7 @@ add_filter( 'excerpt_length', 'wp_example_excerpt_length');
     '</p>'?>
 
     <?php endwhile; ?>
+</div>
 </div>
 <br> <br><br> <br>
 

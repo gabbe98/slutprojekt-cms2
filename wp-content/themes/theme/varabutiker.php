@@ -15,7 +15,7 @@ if (false === ($loop = get_transient('varabutiker'))) {
     'posts_per_page' => 10
   ));
 
-  set_transient('varabutiker', $loop, 12 * HOUR_IN_SECONDS);
+   set_transient('varabutiker', $loop, 12 * HOUR_IN_SECONDS);
 }
 
 while ($loop->have_posts()) : $loop->the_post();
@@ -31,8 +31,10 @@ while ($loop->have_posts()) : $loop->the_post();
   <div class="container">
     <h4> <?php the_title() ?> </h4>
     <p> <?php the_content() ?> </p>
-    <small> <?php the_field('plats') ?></small>
     <?php 
+
+    $map = get_field('google_maps');
+
     echo '<img src="https://maps.googleapis.com/maps/api/staticmap?center=' . $map['lat'] . ',' . $map['lng'] . '&zoom=15&size=600x300&maptype=roadmap
     &markers=color:red%7C' . urlencode($map['address']) . 
     '&key=AIzaSyBQV3hynMzQFauvPmW6-RrMlL4UwjpMQaI" class="mb-3">';
@@ -43,6 +45,6 @@ while ($loop->have_posts()) : $loop->the_post();
 
 <?php endwhile; ?>
 
-<?php wp_reset_postdata(); ?>
+<?php //wp_reset_postdata(); ?>
 
 <?php get_footer(); ?>

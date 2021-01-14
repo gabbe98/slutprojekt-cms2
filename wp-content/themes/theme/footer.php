@@ -1,15 +1,10 @@
 </div>
 <footer>
-    <div class="container-fluid bg-secondary">
+    <div class="jumbotron jumbotron-fluid  mb-0">
         <div class="container">
-        <div class="row">
-            <div class="col-6">
-                <p>
-                    Footer
-                </p>
-            </div>
-        </div>
-        </div>
+            <h1 class="display-4">Footer</h1>
+            <p class="lead">Detta är våran butiks fina footer.</p>
+        </div>  
     </div>
 </footer>
 <?php wp_footer(); ?>
