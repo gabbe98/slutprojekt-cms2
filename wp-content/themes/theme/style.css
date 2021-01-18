@@ -11,11 +11,49 @@
     width: 20vw;
 }
 
-/* Slider  */
+/* Startsida bild */
+.headerStartsida {
+    height: 100%;
+    min-height: 500px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat center center fixed;
+    filter: blur(3px);
+    -webkit-filter: blur(1.5px);
+    overflow: hidden;
+  }
+
+  .bg-text {
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0, 0.4); 
+    color: white;
+    font-weight: bold;
+    border: 3px solid #f1f1f1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    width: 80%;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .headerStartsidaTitle{
+      font-size: 4rem;
+  }
+
+
+/* Slider */
 #carouselSliders{
     width: 50%;
+    height: 100%;
     margin: auto;
-    height: 400px;
+    object-fit: cover;
+}
+
+.carousel-inner{
+    height: 370px;
 }
 
 .carousel-item {
@@ -28,19 +66,67 @@
 color: rgb(0, 0, 0);
 text-align: center;
 background-color: rgba(255, 255, 255, 0.829);
-width: 50%;
-margin-left: 25%;
-margin-top: 40%;
-margin-bottom: 1em;
-padding: 0.2em;
+position: absolute;
+top: 70%;
+left: 50%;
+transform: translate(-50%, -50%);
+z-index: 2;
+width: 60%;
+padding: 5px;
+text-align: center;
 }
 
 
+/* Slider media queries */
+@media screen and (max-width: 1237px) {
+    .sliderTextBox {
+      font-size: 1em;
+    }
+    .sliderTitle{
+        font-size: 2em;
+    }
+  }
+
+@media screen and (max-width: 1197px) {
+    .sliderTextBox {
+      width: auto;
+      padding-left:2rem;
+      padding-right:2rem;
+    }
+
+    #carouselSliders{
+        width: 90%;
+    }
+    
+    .carousel-inner{
+        height: 350px;
+    }
+    }
+
+    @media screen and (max-width: 582px) {
+        .sliderTextBox {
+            padding-left:1rem;
+            padding-right:1rem;
+          }
+        
+        .carousel-inner{
+            height: 300px;
+        }
+        .sliderTitle{
+            font-size: 1.5em;
+        }
+        .sliderText{
+            font-size: 1em;
+        }
+        }
+
+
+/* Bästsäljande, rea & fetured produkter */
 
 .productsBestSellers, 
 .productSales,
 .productFeatured {
-    margin: 5% 25%;
+    margin: 5% 20%;
 }
 
 .productListTitle{
@@ -56,8 +142,9 @@ padding: 0.2em;
 	float:left;
     margin: 1% 0 1% 1.6%;
 }
-.col:first-child { margin-left: 0; }
-
+.col:first-child { 
+    margin-left: 0; 
+}
 
 .group:before,
 .group:after {
@@ -71,40 +158,110 @@ padding: 0.2em;
     zoom:1; 
 }
 
+/* Bästsäljande, rea & fetured produkter, media queries */
+@media screen and (max-width: 1286px) {
+    .productsBestSellers, 
+    .productSales,
+    .productFeatured {
+        margin: 5% 15%;
+    }
 
+    .productTitle{
+        font-size: 24px;
+    }
+    }
+
+    @media screen and (max-width: 925px) {
+        .productsBestSellers, 
+        .productSales,
+        .productFeatured {
+            margin: 5% 10%;
+        }
+        }
+
+    @media screen and (max-width: 820px) {
+        .productsBestSellers, 
+        .productSales,
+        .productFeatured {
+            margin: 5% 5%;
+        }
+        }
+
+    @media screen and (max-width: 735px) {
+        .productsBestSellers, 
+        .productSales,
+        .productFeatured {
+            margin: 5% 5%;
+        }
+
+        .headerStartsidaTitle{
+            font-size: 3rem;
+        }
+        }
+    
 
 @media only screen and (max-width: 480px) {
-	.col { margin: 1% 0 1% 0%;}
+    .col { margin: 1% 0 1% 0%;
+    }
+
+    .headerStartsidaTitle{
+        font-size: 2rem;
+    }
 }
 
 
 
-.puffBlogPost{
-width: 24%;
-margin: auto;
-background-color: rgba(190, 189, 189, 0.253);
-}
-
-.puffTitle{
+/* Puff */
+.latestPost{
     text-align: center;
-    color: black;
-}
-
-.puffExcerpt{
-    text-align: justify;
-    padding: 10px 20px;
-    color: black;
 }
 
 .bloggimage{ 
-    width: 340px;
+    width: 100%;
     height: auto;
-    padding: 10px;
+    padding: auto;
+    margin: auto;
 }
 
 a{
     color: black;
 }
+
+.thumbnail {
+    display: block;
+    padding: 2px;
+    line-height: 10px;
+    border-radius: 2px;
+    object-fit: cover;
+    width: 325px;
+}
+
+.col-md-3{
+    background-color: rgb(233, 233, 233);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.055); 
+    margin: auto;
+    max-width: 100%;
+}
+
+.caption{
+    text-align: center;
+}
+
+.row{
+    margin-bottom: 5rem;
+}
+
+
+@media screen and (max-width: 575px) {
+    .thumbnail {
+        width: auto;
+    }
+    .headerStartsida {
+        min-height: 300px;
+}
+    }
+
+
 
 .woocommerce-billing-fields .form-row, .woocommerce-shipping-fields .form-row,.woocommerce form .form-row {
     display: block;

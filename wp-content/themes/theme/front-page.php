@@ -9,8 +9,21 @@ require 'slider-acf.php'; ?>
 <!-- Avsluta container div från header  -->
 </div>
 
+
+<?php 
+$image = get_field('startsida_bild');
+if( !empty( $image )): ?>
+<div class="headerStartsida" style="background-image: url('<?php echo esc_url($image['url']); ?>);">
+
+    <!-- Startsida headerbild -->
+    <div class="bg-text">
+        <h1 class="headerStartsidaTitle">Workout shop</h1>
+    </div>
+</div>
+<?php endif; ?>
+
+
 <!-- Slider  -->
-<br> <br>
 <div id="carouselSliders" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
         <li data-target="#carouselSliders" data-slide-to="0" class="active"></li>
@@ -44,27 +57,25 @@ require 'slider-acf.php'; ?>
         <span class="sr-only">Next</span>
     </a>
 </div>
-<br> <br><br> <br>
 
-<!-- *********************************************************** -->
 
 <!-- Populära produkter -->
 <?php
-                    $args = array(
-                    'post_type' => 'product',
-                    'posts_per_page' => 8, //Hur många produkter ska visas
-                     'meta_key' => 'total_sales', //Kollar hur många produkter som har sålts av en produkt
-                     'orderby' => 'meta_value_num', 
-                    'tax_query' => array( 
-                        array(
-                            'taxonomy' => 'product_cat',
-                            'field' => 'slug',
-                            'terms' => array( 'catalogues' ),
-                            'operator' => 'NOT IN'
-                        )
-                    ),
-                    );
-                    ?>
+    $args = array(
+    'post_type' => 'product',
+    'posts_per_page' => 8, //Hur många produkter ska visas
+        'meta_key' => 'total_sales', //Kollar hur många produkter som har sålts av en produkt
+        'orderby' => 'meta_value_num', 
+    'tax_query' => array( 
+        array(
+            'taxonomy' => 'product_cat',
+            'field' => 'slug',
+            'terms' => array( 'catalogues' ),
+            'operator' => 'NOT IN'
+        )
+    ),
+    );
+    ?>
 <div class="productsBestSellers">
 
     <h1 class="productListTitle"> Bästsäljare </h1>
@@ -79,7 +90,7 @@ require 'slider-acf.php'; ?>
 
                 <?php 
                     if (has_post_thumbnail( $loop->post->ID )) echo get_the_post_thumbnail($loop->post->ID, 'shop_catalog'); ?>
-                <h3><?php the_title(); ?></h3>
+                <h3 class="productTitle"><?php the_title(); ?></h3>
             </a>
             <?php echo $product->get_price_html(); ?>
             <?php woocommerce_template_loop_add_to_cart( $loop->post, $product ); ?>
@@ -89,8 +100,6 @@ require 'slider-acf.php'; ?>
         <?php wp_reset_query(); ?>
     </div>
 </div>
-<br> <br><br> <br>
-<!-- *********************************************************** -->
 
 
 <!-- Lista över rea-varor  -->
@@ -137,12 +146,9 @@ require 'slider-acf.php'; ?>
         <?php wp_reset_query(); ?>
     </div>
 </div>
-<br> <br><br> <br>
-<!-- *********************************************************** -->
 
 
 <!-- Featured produkter -->
-
 <?php 
 $meta_query  = WC()->query->get_meta_query();
 $tax_query   = WC()->query->get_tax_query();
@@ -193,42 +199,40 @@ if ($featured_query->have_posts()) {
 </div> <?php
 }
 ?>
-<br> <br><br> <br>
-<!-- *********************************************************** -->
 
 
-<!-- Puff av senaste blogginlägget -->
-
-<div class="puffBlogPost">
+<!-- Puff -->
+<h2 class="latestPost"> Senaste blogginlägget </h2>
+<div class="row">
     <?php 
 		$query = $wp_query; $wp_query= null;
 		$wp_query = new WP_Query(); $wp_query->query('posts_per_page=1' . '&paged='.$paged);
         while ($wp_query->have_posts()) : $wp_query->the_post(); 
     ?>
-
     <a href="
     <?php the_permalink(); ?>">
 
-        <?php the_post_thumbnail('post-thumbnail', ['class' => 'bloggimage', 'title' => 'Feature image']);?>
+        <div class="col-sm-6 col-md-3">
+            <div class="thumbnail">
+                <?php the_post_thumbnail('post-thumbnail', ['class' => 'bloggimage', 'title' => 'Feature image']);?>
+            </div>
 
-        <h2 class="puffTitle">
-            <?php the_title(); ?>
-        </h2>
+            <div class="caption">
+                <h3> <?php the_title(); ?></h3>
     </a>
 
     <?php  function wp_example_excerpt_length( $length ) {
-    return 40;
+return 40;
 }
 add_filter( 'excerpt_length', 'wp_example_excerpt_length');
 
-    echo '<p class="puffExcerpt">' 
-    . get_the_excerpt() . 
-    '</p>'?>
+echo '<p class="puffExcerpt">' 
+. get_the_excerpt() . 
+'</p>'?>
 
     <?php endwhile; ?>
 </div>
 </div>
-<br> <br><br> <br>
 
 <?php
 get_footer();
