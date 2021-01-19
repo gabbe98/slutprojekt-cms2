@@ -5,34 +5,10 @@
 
 get_header();
 
+do_action('kontakt')
+
 ?>
 
-<div class="container pb-5">
-    <form class="my-5">
-        <h1>Kontaktformulär</h1>
-        <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Skriv in din email">
-            <small id="emailHelp" class="form-text text-muted">Vi delar aldrig ut din email till andra.</small>
-        </div>
-        <div class="form-group">
-            <label for="exampleFormControlSelect1">Vad handlar det om?</label>
-            <select class="form-control" id="exampleFormControlSelect1">
-            <option>Kontakt</option>
-            <option>Reklamation</option>
-            <option>Faktura</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="exampleFormControlTextarea1">Skriv ett meddelande</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-        </div>
-        <div class="form-group">
-            <label for="exampleFormControlFile1">Fil input</label>
-            <input type="file" class="form-control-file" id="exampleFormControlFile1">
-        </div>
-        <button type="submit" class="btn btn-primary">Skicka in</button>
-    </form>
 
 <?php
 
