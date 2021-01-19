@@ -50,6 +50,7 @@
     height: 100%;
     margin: auto;
     object-fit: cover;
+    margin-top: 2em;
 }
 
 .carousel-inner{
