@@ -11,9 +11,11 @@
     width: 20vw;
 }
 
+
+
 /* Startsida bild */
 .headerStartsida {
-    height: 100%;
+    /* height: 100%; */
     min-height: 500px;
     background-size: cover;
     background-position: center;
@@ -21,6 +23,7 @@
     filter: blur(3px);
     -webkit-filter: blur(1.5px);
     overflow: hidden;
+    width: 100%;
   }
 
   .bg-text {
@@ -77,6 +80,17 @@ padding: 5px;
 text-align: center;
 }
 
+
+@media screen and (min-width: 1719px) {
+    #carouselSliders{
+        width: 100%;
+    }
+    
+    .carousel-inner{
+        margin:auto;
+        width: 40%;
+    }
+    }
 
 /* Slider media queries */
 @media screen and (max-width: 1237px) {
@@ -263,11 +277,6 @@ a{
     }
 
 
+   
 
-.woocommerce-billing-fields .form-row, .woocommerce-shipping-fields .form-row,.woocommerce form .form-row {
-    display: block;
-}
-
-.woocommerce .col2-set .col-1, .woocommerce-page .col2-set .col-1,.woocommerce .col2-set .col-2, .woocommerce-page .col2-set .col-2 {
-    max-width: unset;
-}
+   
