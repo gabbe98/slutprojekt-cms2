@@ -90,6 +90,11 @@ text-align: center;
         margin:auto;
         width: 40%;
     }
+    .row{
+        margin-bottom: 5rem;
+        width: 70%;
+        margin: auto;
+    }
     }
 
 /* Slider media queries */
